@@ -131,10 +131,10 @@ for applications that require Pymavlink
 This step will be relatively slow. First, install all required Python libraries
 (and some that will come in handy down the road), then, install lxml without
 optimizations so that it is as fast to compile as possible, and finally, install
-pymavlink
+pymavlink.
 
-        sudo pip3.6 install future Cython numpy pyserial # this might take 1 hour or so, be patient, even if it looks stuck
-        CFLAGS="-O0" sudo pip3.6 install lxml # this might take 1 hour or so, be patient, even if it looks stuck
+        sudo pip3.6 install future Cython numpy pyserial
+        CFLAGS="-O0" sudo pip3.6 install lxml
         sudo pip3.6 install pymavlink
 
 ## MAVLink proxy
