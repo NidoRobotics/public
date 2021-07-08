@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Author's note: this script was cobbled together with many snippets from the internet,
+# including predomaninantly, small functions from the Ardupilot forums and guides
+
 import argparse
 import time
 import sys
