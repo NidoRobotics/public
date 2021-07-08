@@ -76,8 +76,8 @@ if __name__ == "__main__":
         dest='connection',
         action="store",
         type=str,
-        default="udpout:192.168.2.1:14550",
-        help="Mavlink udp address and port. eg \"127.0.0.1:4777\""
+        default="udpin:192.168.2.2:9003",
+        help="Mavlink connection type, address, and port. eg \"udpin:192.168.2.2:9003\""
     )
     parser.add_argument(
         '-o', '--option',
