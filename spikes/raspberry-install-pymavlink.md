@@ -25,11 +25,11 @@ we will resort to a (temporary) external USB drive.
 
 ### Check disk space
 1. Remove old logs to make room. Be adviced, **this will delete your ROV's logs**.
-    .. code-block:: bash
+
         sudo rm -rf ~/telemetry/logs/*
 
 2. Check available disk space, look under the *Avail* column for `/`.
-    .. code-block:: bash
+
         df -h
 
 ### Create a swap file: on the SD card
@@ -38,26 +38,30 @@ to create a swap file and compile everything right away. If not, please consider
 using an external USB drive as explained in the next section.
 
 1. Temporarily stop your system's swap.
-    .. code-block:: bash
+
         sudo dphys-swapfile swapoff
+
 
 2. Increase the swap to 2GB. To do so, edit the file `/etc/dphys-swapfile`
 and modify the variable `CONF_swapSIZE` to `2048`. You can use nano to do so
 as follows (to save and exit, hit CTRL+o and then CTRL+x).
-    .. code-block:: bash
+
         sudo nano /etc/dphys-swapfile
 
+
 3. Setup the new swap file.
-    .. code-block:: bash
+
         sudo dphys-swapfile setup
 
 4. Start the swap.
-    .. code-block:: bash
+
         sudo dphys-swapfile swapon
 
+
 5. Check that it worked. You should see that you have 2GB of swap available.
-    .. code-block:: bash
+
         free -mh
+
 
 ### Create a swap file: on an external USB drive
 If you have already created a swap file on the SD card, skip this section. Note
@@ -70,13 +74,15 @@ the drive for normal operation.
 the next steps accordingly.
 
 3. Tell the kernel to use the drive as extra swap (with high priority)
-    .. code-block:: bash
+
         sudo swapon -p 25000 /dev/sda1
+
 
 4. Check that it worked. You should see that you have 2GB of swap available
 (or more deppending on your drive)
-    .. code-block:: bash
+
         free -mh
+
 
 
 
@@ -91,19 +97,18 @@ for applications that require Pymavlink
 
 1. Install the required build-tools (some might already be installed on your system).
 
-   .. code-block:: bash
         sudo apt-get update
         sudo apt-get install build-essential tk-dev
         sudo apt-get install libncurses5-dev libncursesw5-dev libreadline6-dev
         sudo apt-get install libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
         sudo apt-get install libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
 
+
    If one of the packages cannot be found, try a newer version number (e.g. ``libdb5.4-dev`` instead of ``libdb5.3-dev``).
 
 2. Download and install Python 3.6. When downloading the source code, select the most recent release of Python 3.6, available
    on the `official site <https://www.python.org/downloads/source/>`_. Adjust the file names accordingly.
 
-   .. code-block:: bash
         wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
         tar zxvf Python-3.6.4.tgz
         cd Python-3.6.4
@@ -113,7 +118,6 @@ for applications that require Pymavlink
 
 3. Make the compiled binaries globally available.
 
-   .. code-block:: bash
         sudo ln -s /usr/local/opt/python-3.6.4/bin/pydoc3.6 /usr/bin/pydoc3.6
         sudo ln -s /usr/local/opt/python-3.6.4/bin/python3.6 /usr/bin/python3.6
         sudo ln -s /usr/local/opt/python-3.6.4/bin/python3.6m /usr/bin/python3.6m
@@ -129,7 +133,6 @@ This step will be relatively slow. First, install all required Python libraries
 optimizations so that it is as fast to compile as possible, and finally, install
 pymavlink
 
-    .. code-block:: bash
         sudo pip3.6 install future Cython numpy pyserial # this might take 1 hour or so, be patient, even if it looks stuck
         CFLAGS="-O0" sudo pip3.6 install lxml # this might take 1 hour or so, be patient, even if it looks stuck
         sudo pip3.6 install pymavlink
@@ -144,7 +147,7 @@ MAVProxy so that any future script you write may talk to the Pixhawk.
 2. Add new inbound connection to the proxy. Pymavlink will then be able to
 connect over UDP to the chosen port (9003 in this example) and talk to the board.
 Simply append at the bottom of the configuration the following and hit
-`Restart MAVlink Proxy`
-    ```
-     --out udpout:localhost:9003
-    ``
+`Restart MAVlink Proxy`.
+
+        --out udpout:localhost:9003
+
