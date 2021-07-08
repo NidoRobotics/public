@@ -1,5 +1,5 @@
-Installing Python 3.5 on Raspbian
-=================================
+Running Pymavlink on the Sibiu Pro ROV
+======================================
 
 NOTE: This guide is based on BMeu's gist for Python 3.5, available at:
 https://gist.github.com/BMeu/af107b1f3d7cf1a2507c9c6429367a3b
